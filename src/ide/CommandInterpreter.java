@@ -130,12 +130,21 @@ public class CommandInterpreter {
             switch (commandLine.charAt(0)) {
                 case '1', 'l', 'L': component.setMode(Mode.fileLIST); break;
                 case '2', 'u', 'U': component.setMode(Mode.fileHAVEUPSEL); break;
+                case '3': /*component.setMode(Mode.fileDEL);*/ break;
+                case '4': /*IDE.compoCaller.callComponent(new TextEditorCompo(FileCompo.getUploadedFile()))*/; break;
+                case '5': /*component.setMode(Mode.fileMAKE);*/ break;
+                case '6', 'e', 'E': IDE.compoCaller.returnComponent(); break;
                 case 'h', 'H': component.setMode(Mode.fileHELP); break;
                 case 'v', 'V': component.setMode(Mode.fileVER); break;
             }
         } else if (component.mode.equals(Mode.fileHAVEUPSEL)) {
             switch (commandLine.charAt(0)) {
                 case '1': component.setMode(Mode.fileLIST); break;
+                case '2', 'u', 'U': component.setMode(Mode.fileHAVESEL); break;
+                case '3': /*component.setMode(Mode.fileDEL);*/ break;
+                case '4': /*IDE.compoCaller.callComponent(new TextEditorCompo(FileCompo.getUploadedFile()))*/; break;
+                case '5': /*component.setMode(Mode.fileMAKE);*/ break;
+                case '6', 'e', 'E': IDE.compoCaller.returnComponent(Mode.indHAVEFILE); break;
                 case 'h', 'H': component.setMode(Mode.fileHELP); break;
                 case 'v', 'V': component.setMode(Mode.fileVER); break;
             }

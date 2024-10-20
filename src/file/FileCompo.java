@@ -37,6 +37,7 @@ public class FileCompo extends IDEComponent {
                 break;
             }
             case 0x22: {
+                uploadedFile = null;
                 break;
             }
             case 0x23: {
@@ -113,6 +114,11 @@ public class FileCompo extends IDEComponent {
         return selectedFile;
     }
 
+    /**
+     * if mode is file not have or have selected, uploaded, or both then it can change runnable mode to m.
+     * if mode is not runnable, then change viewing mode to m.
+     * @param m is Mode to change
+     */
     @Override
     public void setMode(Mode m) {
         int modeValue = m.getValue();
@@ -133,11 +139,24 @@ public class FileCompo extends IDEComponent {
         }
     }
 
+    /**
+     *
+     */
+    @Override
+    public void changeMode() {
+        if(mode == viewingMode) {
+            mode = filemode;
+        } else if (mode == runableMode) {
+            runableMode = filemode;
+            mode = runableMode;
+        }
+    }
+
     public File[] childFiles = null;
     private static File uploadedFile = null;
     public File selectedFile = null;
 
-    Mode filemode = null;
+    private Mode filemode = null;
 
     public FileRunner fileRunner = new FileRunner();
     public FileViewer fileViewer = new FileViewer();

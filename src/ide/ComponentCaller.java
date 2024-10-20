@@ -71,6 +71,27 @@ public class ComponentCaller {
         //
     }
 
+    void returnComponent(Mode mode) {
+        if(!componentStack.isEmpty()) {
+            componentStack.remove(componentStack.size()-1);
+            if(componentStack.isEmpty()){ //quit Index
+                runningComponent = null;
+            }else {
+                runningComponent = componentStack.peek();
+                runningComponent.setMode(mode);
+            }
+        }
+        else {
+            System.out.println("Error_001 : No component found");
+        }
+        //these for checking Stack.
+        for(int i = 0; i<componentStack.size(); i++){
+            System.out.print(componentStack.elementAt(i).toString() + " ");
+        }
+        System.out.println();
+        //
+    }
+
     public IDEComponent getRunningComponent() {
         return runningComponent;
     }

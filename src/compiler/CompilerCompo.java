@@ -1,11 +1,12 @@
 package compiler;
 
+import file.FileCompo;
 import ide.IDEComponent;
 import ide.Mode;
 
 public class CompilerCompo extends IDEComponent {
     public CompilerCompo() {
-        super();
+
     }
 
     public void executeComponent() {
