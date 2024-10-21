@@ -81,16 +81,17 @@ public class CommandInterpreter {
         if(component.mode.equals(Mode.indNOTFILE)){
             switch (commandLine.charAt(0)) {
                 case '1': IDE.compoCaller.callComponent(new FileCompo()); break;
-                case '4': IDE.compoCaller.callComponent(new FileCompo()); break;
-                case '5': IDE.compoCaller.callComponent(new TextEditorCompo()); break;
-                case '6': IDE.compoCaller.callComponent(new ManagerCompo()); break;
-                case '7', 'e', 'E': IDE.compoCaller.returnComponent(); break;
+                case '2': IDE.compoCaller.callComponent(new FileCompo()); break;
+                case '3': IDE.compoCaller.callComponent(new TextEditorCompo()); break;
+                case '4', 's', 'S': IDE.compoCaller.callComponent(new ManagerCompo()); break;
+                case '5', 'e', 'E': IDE.compoCaller.returnComponent(); break;
                 case 'h', 'H': component.setMode(Mode.indHELP); break;
                 case 'v', 'V': component.setMode(Mode.indVER); break;
             }
         } else if (component.mode.equals(Mode.indHAVEFILE)) {
             switch (commandLine.charAt(0)) {
-                case '1': IDE.compoCaller.callComponent(new FileCompo()); break;
+                case '1': IDE.compoCaller.callComponent(new FileCompo(ManagerCompo.basicFileStarting, Mode.fileHAVEUP)); break;
+                //매니저에 저장된 주소로 변경해야함
                 case '2': IDE.compoCaller.callComponent(new CompilerCompo()); break;
                 case '3': IDE.compoCaller.callComponent(new RunnerCompo()); break;
                 case '4': IDE.compoCaller.callComponent(new FileCompo()); break;
@@ -114,9 +115,10 @@ public class CommandInterpreter {
         if(component.mode.equals(Mode.fileNOTFILE)){
             switch (commandLine.charAt(0)) {
                 case '1', 'l', 'L': component.setMode(Mode.fileLIST); break;
-                case '2', 'e', 'E': IDE.compoCaller.returnComponent(); break;
+                case '2', 'e', 'E': IDE.compoCaller.returnComponent(Mode.indNOTFILE); break;
                 case 'h', 'H': component.setMode(Mode.fileHELP); break;
                 case 'v', 'V': component.setMode(Mode.fileVER); break;
+                case 's', 'S': IDE.compoCaller.callComponent(new ManagerCompo()); break;
             }
         } else if (component.mode.equals(Mode.fileLIST)) {
             switch (commandLine.charAt(0)) {
@@ -131,22 +133,32 @@ public class CommandInterpreter {
                 case '1', 'l', 'L': component.setMode(Mode.fileLIST); break;
                 case '2', 'u', 'U': component.setMode(Mode.fileHAVEUPSEL); break;
                 case '3': /*component.setMode(Mode.fileDEL);*/ break;
-                case '4': /*IDE.compoCaller.callComponent(new TextEditorCompo(FileCompo.getUploadedFile()))*/; break;
+                case '4': /*IDE.compoCaller.callComponent(new TextEditorCompo(FileCompo.getUploadedFile()));*/ break;
                 case '5': /*component.setMode(Mode.fileMAKE);*/ break;
                 case '6', 'e', 'E': IDE.compoCaller.returnComponent(); break;
                 case 'h', 'H': component.setMode(Mode.fileHELP); break;
                 case 'v', 'V': component.setMode(Mode.fileVER); break;
+                case 's', 'S': IDE.compoCaller.callComponent(new ManagerCompo()); break;
             }
         } else if (component.mode.equals(Mode.fileHAVEUPSEL)) {
             switch (commandLine.charAt(0)) {
-                case '1': component.setMode(Mode.fileLIST); break;
+                case '1', 'l', 'L': component.setMode(Mode.fileLIST); break;
                 case '2', 'u', 'U': component.setMode(Mode.fileHAVESEL); break;
                 case '3': /*component.setMode(Mode.fileDEL);*/ break;
-                case '4': /*IDE.compoCaller.callComponent(new TextEditorCompo(FileCompo.getUploadedFile()))*/; break;
+                case '4': /*IDE.compoCaller.callComponent(new TextEditorCompo(FileCompo.getUploadedFile()));*/ break;
                 case '5': /*component.setMode(Mode.fileMAKE);*/ break;
                 case '6', 'e', 'E': IDE.compoCaller.returnComponent(Mode.indHAVEFILE); break;
                 case 'h', 'H': component.setMode(Mode.fileHELP); break;
                 case 'v', 'V': component.setMode(Mode.fileVER); break;
+                case 's', 'S': IDE.compoCaller.callComponent(new ManagerCompo()); break;
+            }
+        } else if (component.mode.equals(Mode.fileHAVEUP)) {
+            switch (commandLine.charAt(0)) {
+                case '1', 'l', 'L': component.setMode(Mode.fileLIST); break;
+                case '2', 'u', 'U': component.setMode(Mode.fileNOTFILE); break;
+                case '3': /*component.setMode(Mode.fileMAKE);*/ break;
+                case '4', 'e', 'E': IDE.compoCaller.returnComponent(Mode.indHAVEFILE); break;
+                case 's', 'S': IDE.compoCaller.callComponent(new ManagerCompo()); break;
             }
         } else if(component.mode.equals(Mode.fileHELP) || component.mode.equals(Mode.fileVER) || component.mode.equals(Mode.fileERROR)) {
             switch (commandLine.charAt(0)) {

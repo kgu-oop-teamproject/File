@@ -3,6 +3,7 @@ package file;
 import ide.IDE;
 import ide.IDEComponent;
 import ide.Mode;
+import manager.ManagerCompo;
 
 import java.io.File;
 
@@ -12,12 +13,13 @@ import java.io.File;
 public class FileCompo extends IDEComponent {
     public FileCompo() {
         super(Mode.fileNOTFILE);
-        fileRunner.startPoint = "C:\\Users\\USER\\Downloads";
+        fileRunner.startPoint = ManagerCompo.basicFileStarting;
+        //매니저 컴포넌트에 저장된 주소로
     }
 
     public FileCompo(Mode m) {
         super(m);
-        fileRunner.startPoint = "C\\";
+        fileRunner.startPoint = ManagerCompo.basicFileStarting;
     }
 
     public FileCompo(String sp) {
@@ -34,6 +36,7 @@ public class FileCompo extends IDEComponent {
     public void executeComponent() {
         switch (mode.getValue()) {
             case 0x21:{
+                uploadedFile = null;
                 break;
             }
             case 0x22: {
@@ -41,6 +44,7 @@ public class FileCompo extends IDEComponent {
                 break;
             }
             case 0x23: {
+                selectedFile = null;
                 break;
             }
             case 0x24: {
@@ -64,7 +68,11 @@ public class FileCompo extends IDEComponent {
                     if(file.exists()) {
                         if(file.isFile()) {
                             selectedFile = fileRunner.selectFileOfList(IDE.comInterpreter.getOptionLine());
-                            setMode(Mode.fileHAVESEL);
+                            if(uploadedFile == null) {
+                                setMode(Mode.fileHAVESEL);
+                            } else {
+                                setMode(Mode.fileHAVEUPSEL);
+                            }
                         } else {
                             fileRunner.goChildFolderOfList(IDE.comInterpreter.getOptionLine());
                             childFiles=fileRunner.getListofFile();
@@ -120,14 +128,14 @@ public class FileCompo extends IDEComponent {
      * @param m is Mode to change
      */
     @Override
-    public void setMode(Mode m) {
+    public void setMode(Mode m) {//파일 리스트 선택에서 뒤로 갈 때 파일 상태로 다시 돌아가야 함
         int modeValue = m.getValue();
         switch(modeValue) {
             case 0x21, 0x22, 0x23, 0x24, 0x25, 0x26: {
-                runableMode = m;
-                if(modeValue == 0x21 || modeValue == 0x22 || modeValue == 0x23 || modeValue == 0x24) {
-                    filemode = m;
+                if(modeValue <= 0x24) {
+                    filemode = runableMode;
                 }
+                runableMode = m;
                 mode = runableMode;
                 break;
             }
@@ -143,9 +151,11 @@ public class FileCompo extends IDEComponent {
      *
      */
     @Override
-    public void changeMode() {
+    public void changeMode() {//파일 리스트에서 파일 인덱스 0x21-0x24로 돌아갈 수 있고 상태를 유지해야한다.
+        //파일을 선택한 상태에서 뒤로가기시 오류
         if(mode == viewingMode) {
-            mode = filemode;
+            runableMode = filemode;
+            mode = runableMode;
         } else if (mode == runableMode) {
             runableMode = filemode;
             mode = runableMode;

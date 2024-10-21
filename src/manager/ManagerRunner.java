@@ -8,4 +8,8 @@ public class ManagerRunner {
     public void installIDE() {
         
     }
+
+    public void getFromSettingFile() {
+
+    }
 }

@@ -10,12 +10,10 @@ public class IndexViewer {
     public void showStartProgram() {
         System.out.println("##############################");
         System.out.println("1. Search File");
-        System.out.println("2. Compile File");
-        System.out.println("3. Run File");
-        System.out.println("4. View Log File");
-        System.out.println("5. Edit Text File");
-        System.out.println("6. IDE Settings");
-        System.out.println("7. Exit");
+        System.out.println("2. View Log File");
+        System.out.println("3. Edit Text File");
+        System.out.println("4. IDE Settings");
+        System.out.println("5. Exit");
     }
 
     public void showHavingFile(File file) {
@@ -35,7 +33,7 @@ public class IndexViewer {
         System.out.println("you can input word {\"help, version, settings, back, exit\"}");
         System.out.println("**help** used itself ++ you can see the manual of index");
         System.out.println("**version** used itself ++ you can see the history of versions");
-        System.out.println("**settings** used itself ++ you can enter IDE Settings, likewise you can also put number 6");
+        System.out.println("**set** used itself ++ you can enter IDE Settings, likewise you can also put number 6");
         System.out.println("**back** used itself ++ when you put **help** or **version**, you can comeback to Main Index");
         System.out.println("**exit** used itself ++ when you exit the program");
     }

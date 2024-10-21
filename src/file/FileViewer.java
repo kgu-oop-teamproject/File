@@ -20,10 +20,9 @@ public class FileViewer {
         System.out.println("Searching and Make File at : " + sp);
         System.out.println("Uploaded File : " + uploadedFile.getName());
         System.out.println("1. View File List");
-        System.out.println("2. Select File");
-        System.out.println("3. Unload File : " + uploadedFile.getName());
-        System.out.println("4. Make new File");
-        System.out.println("5. Exit File Searcher");
+        System.out.println("2. Unload File : " + uploadedFile.getName());
+        System.out.println("3. Make new File");
+        System.out.println("4. Exit File Searcher");
     }
 
     public void showFileSelected(String sp, File selectedFile) {

@@ -33,6 +33,9 @@ public enum Mode {
     compileERROR(0x3D),
     compileHELP(0x3E),
     compileVER(0x3F),
+
+    managerNOTHAVE(0x41),
+    managerHAVE(0x42),
     ;
 
     Mode (int v) {
