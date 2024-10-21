@@ -92,8 +92,8 @@ public class CommandInterpreter {
             switch (commandLine.charAt(0)) {
                 case '1': IDE.compoCaller.callComponent(new FileCompo(ManagerCompo.basicFileStarting, Mode.fileHAVEUP)); break;
                 //매니저에 저장된 주소로 변경해야함
-                case '2': IDE.compoCaller.callComponent(new CompilerCompo()); break;
-                case '3': IDE.compoCaller.callComponent(new RunnerCompo()); break;
+                case '2': IDE.compoCaller.callComponent(new CompilerCompo(FileCompo.getUploadedFile())); break;
+                case '3': IDE.compoCaller.callComponent(new RunnerCompo(/*FileCompo.getUploadedFile()*/)); break;
                 case '4': IDE.compoCaller.callComponent(new FileCompo()); break;
                 case '5': IDE.compoCaller.callComponent(new TextEditorCompo()); break;
                 case '6': IDE.compoCaller.callComponent(new ManagerCompo()); break;

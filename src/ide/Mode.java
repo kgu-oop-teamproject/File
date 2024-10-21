@@ -26,9 +26,11 @@ public enum Mode {
     fileHELP(0x2E),
     fileVER(0x2F),
 
-    CompileC(0x31),
-    compileJAVA(0x32),
-    compileSIC(0x33),
+    compileNOTHAVE(0x31),
+    compileHAVE(0x32),
+    compileC(0x33),
+    compileJAVA(0x34),
+    compileSIC(0x35),
 
     compileERROR(0x3D),
     compileHELP(0x3E),
