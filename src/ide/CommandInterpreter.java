@@ -78,7 +78,7 @@ public class CommandInterpreter {
     }
 
     private void interpretIndex(IDEComponent component) {
-        if(component.mode.equals(Mode.indNOTFILE)){
+        if(component.mode.equals(Mode.indNOFILE)){
             switch (commandLine.charAt(0)) {
                 case '1': IDE.compoCaller.callComponent(new FileCompo()); break;
                 case '2': IDE.compoCaller.callComponent(new FileCompo()); break;
@@ -112,10 +112,10 @@ public class CommandInterpreter {
     }
 
     private void interpretFile(IDEComponent component) {
-        if(component.mode.equals(Mode.fileNOTFILE)){
+        if(component.mode.equals(Mode.fileNOFILE)){
             switch (commandLine.charAt(0)) {
                 case '1', 'l', 'L': component.setMode(Mode.fileLIST); break;
-                case '2', 'e', 'E': IDE.compoCaller.returnComponent(Mode.indNOTFILE); break;
+                case '2', 'e', 'E': IDE.compoCaller.returnComponent(Mode.indNOFILE); break;
                 case 'h', 'H': component.setMode(Mode.fileHELP); break;
                 case 'v', 'V': component.setMode(Mode.fileVER); break;
                 case 's', 'S': IDE.compoCaller.callComponent(new ManagerCompo()); break;
@@ -155,7 +155,7 @@ public class CommandInterpreter {
         } else if (component.mode.equals(Mode.fileHAVEUP)) {
             switch (commandLine.charAt(0)) {
                 case '1', 'l', 'L': component.setMode(Mode.fileLIST); break;
-                case '2', 'u', 'U': component.setMode(Mode.fileNOTFILE); break;
+                case '2', 'u', 'U': component.setMode(Mode.fileNOFILE); break;
                 case '3': /*component.setMode(Mode.fileMAKE);*/ break;
                 case '4', 'e', 'E': IDE.compoCaller.returnComponent(Mode.indHAVEFILE); break;
                 case 's', 'S': IDE.compoCaller.callComponent(new ManagerCompo()); break;

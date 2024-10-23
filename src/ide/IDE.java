@@ -22,7 +22,7 @@ public class IDE {
         compoCaller.returnComponent();
 
         //these lines are flow 2 to flow 3
-        compoCaller.callComponent(new IndexCompo(Mode.indNOTFILE));
+        compoCaller.callComponent(new IndexCompo(Mode.indNOFILE));
         do {
             compoCaller.runComponent(); //show and run
             comInterpreter.getCommandLine();

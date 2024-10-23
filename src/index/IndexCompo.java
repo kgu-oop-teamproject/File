@@ -43,7 +43,7 @@ public class IndexCompo extends IDEComponent {
      */
     @Override
     public void setMode(Mode m) {
-        if(m == Mode.indNOTFILE || m == Mode.indHAVEFILE) {
+        if(m == Mode.indNOFILE || m == Mode.indHAVEFILE) {
             runableMode = m;
             mode = runableMode;
         } else {
