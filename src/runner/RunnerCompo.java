@@ -4,6 +4,10 @@ import ide.IDEComponent;
 import ide.Mode;
 
 public class RunnerCompo extends IDEComponent {
+    public RunnerCompo() {
+
+    }
+
     public void executeComponent(){
 
     }
