@@ -8,11 +8,11 @@ import java.io.File;
 
 public class CompilerCompo extends IDEComponent {
     public CompilerCompo() {
-        setMode(Mode.compileNOTHAVE);
+        setMode(Mode.compileNOFILE);
     }
 
     public CompilerCompo(File compileFile) {
-        setMode(Mode.compileHAVE);
+        setMode(Mode.compileHAVEFILE);
     }
 
     public void executeComponent() {

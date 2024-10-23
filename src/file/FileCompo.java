@@ -12,7 +12,7 @@ import java.io.File;
  */
 public class FileCompo extends IDEComponent {
     public FileCompo() {
-        super(Mode.fileNOTFILE);
+        super(Mode.fileNOFILE);
         fileRunner.startPoint = ManagerCompo.basicFileStarting;
         //매니저 컴포넌트에 저장된 주소로
     }
@@ -23,7 +23,7 @@ public class FileCompo extends IDEComponent {
     }
 
     public FileCompo(String sp) {
-        super(Mode.fileNOTFILE);
+        super(Mode.fileNOFILE);
         fileRunner.startPoint = sp;
     }
 
