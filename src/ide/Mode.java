@@ -41,7 +41,8 @@ public enum Mode {
 
     runnerNOTHAVE(0x51),
     runnerHAVE(0x52),
-    runnerError(0x53),
+    runnerCompileError(0x53),
+    runnerRunTimeError(0x54),
     ;
 
     Mode (int v) {

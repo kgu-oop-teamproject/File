@@ -8,27 +8,27 @@ import java.io.File;
 
 public class RunnerCompo extends IDEComponent {
 
-    public RunnerCompo() {
-        setMode(Mode.runnerNOTHAVE); //0x51
-    }
+    File runfile = FileCompo.getUploadedFile(); //파일
+    public static int errorFlag; //컴파일 에러 났거나 컴파일 안돌렸거나
+    public RunnerRunner runnerRunner = new RunnerRunner(runfile);
+    public RunnerViewer runnerViewer = new RunnerViewer();
 
-    public RunnerCompo(File runfile, int errorFlag) {
-        if(errorFlag == 0) {
+    public RunnerCompo() {
+        if(runfile == null){
+            setMode(Mode.runnerNOTHAVE); //0x51
+        }else if(errorFlag == 0) {
             setMode(Mode.runnerHAVE); //0x52
         }else {
-            setMode(Mode.runnerError); //0x53
+            setMode(Mode.runnerCompileError); //0x53 파일이 새로 올려진 상태면 자동으로 errorFlag 올라가야 함
         }
     }
-    //CMD에서 엑시트 코드 받아올수 있음
+    //Cmd 에서 엑시트 코드 받아올수 있음
     //컴파일 쪽에서 엑시트코드 받아다가 써먹으면 될듯
     //exitCode = process.waitFor();
 
     public void executeComponent(){
         switch (mode.getValue()) {
-            case 0x51:{
-                break;
-            }
-            case  0x52:{
+            case 0x52: {
                 break;
             }
         }
@@ -37,13 +37,16 @@ public class RunnerCompo extends IDEComponent {
     public void showComponent() {
         switch (mode.getValue()) {
             case 0x51: {
-                break;
+                runnerViewer.runnerFinished(); break;
             }
             case 0x52: {
-                break;
+                runnerViewer.runnerNoFile(); break;
             }
             case 0x53: {
-                break;
+                runnerViewer.runnerCompileError(); break;
+            }
+            case 0x54: {
+                runnerViewer.runnerRunTimeError(); break;
             }
         }
     }
@@ -51,11 +54,4 @@ public class RunnerCompo extends IDEComponent {
     public void setMode(Mode m){
 
     }
-
-    File runfile = FileCompo.getUploadedFile();
-    public int errorFlag;
-
-    public RunnerRunner runnerRunner = new RunnerRunner();
-    public RunnerViewer runnerViewer = new RunnerViewer();
-
 }
