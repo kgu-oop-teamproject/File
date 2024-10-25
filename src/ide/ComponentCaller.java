@@ -53,7 +53,7 @@ public class ComponentCaller {
      */
     void returnComponent() {
         if(!componentStack.isEmpty()) {
-            componentStack.remove(componentStack.size()-1);
+            componentStack.removeLast();
             if(componentStack.isEmpty()){ //quit Index
                 runningComponent = null;
             }else {
@@ -73,7 +73,7 @@ public class ComponentCaller {
 
     void returnComponent(Mode mode) {
         if(!componentStack.isEmpty()) {
-            componentStack.remove(componentStack.size()-1);
+            componentStack.removeLast();
             if(componentStack.isEmpty()){ //quit Index
                 runningComponent = null;
             }else {

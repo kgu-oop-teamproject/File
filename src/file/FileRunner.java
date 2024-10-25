@@ -10,6 +10,10 @@ public class FileRunner {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public File[] getListofFile() {
         if(fileSearcher.isDirectory()) {
             listOfFiles = fileSearcher.listFiles();
@@ -19,11 +23,21 @@ public class FileRunner {
         }
     }
 
+    /**
+     *
+     * @param fileName
+     * @return
+     */
     public File selectFile(String fileName) {
         File file = new File(fileName);
         return file;
     }
 
+    /**
+     *
+     * @param fileName
+     * @return
+     */
     public File selectFileOfList(String fileName) {
         File file = new File(startPoint + "\\"+ fileName);
         if(file.isFile()){

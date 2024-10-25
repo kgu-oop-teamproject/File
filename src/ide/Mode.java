@@ -7,7 +7,7 @@ package ide;
  */
 public enum Mode {
 
-    indNOTFILE (0x11),
+    indNOFILE (0x11),
     indHAVEFILE(0x12),
 
     indERROR(0x1D),
@@ -43,7 +43,7 @@ public enum Mode {
     runnerHAVE(0x52),
     runnerCompileError(0x53),
     runnerRunTimeError(0x54),
-    ;
+    fileNOFILE(0x55);
 
     Mode (int v) {
         this.value = v;

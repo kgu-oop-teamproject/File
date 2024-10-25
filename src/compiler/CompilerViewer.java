@@ -17,12 +17,12 @@ public class CompilerViewer {
         System.out.println("5. Exit Compiler System");
     }
 
-    public void showCompileJava(String[] javaC){
+    public void showCompileJava(String[] javaC) {
         int i = 1;
         System.out.println("##############################");
         System.out.println("Select Compiler Version");
-        for(String s:javaC){
-            System.out.println(i + ". "+ s);
+        for (String s : javaC) {
+            System.out.println(i + ". " + s);
         }
     }
 
@@ -33,5 +33,15 @@ public class CompilerViewer {
         for (String s : C) {
             System.out.println(i + ". " + s);
         }
+    }
+
+    public void showCompileError(String fileName) {
+        System.out.println("##############################");
+        System.out.println("2 compile error occurred - " + fileName + ".error");
+        System.out.println();
+    }
+
+    public void showManual() {
+        System.out.println("HELP");
     }
 }
