@@ -21,7 +21,7 @@ public class Installer{
      * @return 설치되었으면 true
      */
     private boolean isInstalled() {
-
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ public class Installer{
      * @return 모든 파일이 유효하면 true
      */
     private boolean isValid() {
-
+        return false;
     }
 
     /**
