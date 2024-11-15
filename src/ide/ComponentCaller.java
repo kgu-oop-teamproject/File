@@ -51,7 +51,7 @@ public class ComponentCaller {
      * delete peek of Component and change running Component to peek of Stack
      * running component is changed peek of stack.
      */
-    void returnComponent() {
+    public void returnComponent() {
         if(!componentStack.isEmpty()) {
             componentStack.removeLast();
             if(componentStack.isEmpty()){ //quit Index
@@ -71,7 +71,7 @@ public class ComponentCaller {
         //
     }
 
-    void returnComponent(Mode mode) {
+    public void returnComponent(Mode mode) {
         if(!componentStack.isEmpty()) {
             componentStack.removeLast();
             if(componentStack.isEmpty()){ //quit Index

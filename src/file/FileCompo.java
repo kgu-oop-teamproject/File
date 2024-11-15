@@ -4,112 +4,181 @@ import ide.IDE;
 import ide.IDEComponent;
 import ide.Mode;
 import manager.ManagerCompo;
-
+import texteditor.TextEditorCompo;
 import java.io.File;
 
 /**
  *
  */
 public class FileCompo extends IDEComponent {
-    public FileCompo() {
-        super(Mode.fileNOFILE);
-        fileRunner.startPoint = ManagerCompo.basicFileStarting;
-        //매니저 컴포넌트에 저장된 주소로
-    }
-
-    public FileCompo(Mode m) {
-        super(m);
-        fileRunner.startPoint = ManagerCompo.basicFileStarting;
-    }
-
-    public FileCompo(String sp) {
-        super(Mode.fileNOFILE);
-        fileRunner.startPoint = sp;
-    }
 
     public FileCompo(String sp, Mode m) {
-        super(m);
+        setMode(m);
         fileRunner.startPoint = sp;
     }
 
     @Override
     public void executeComponent() {
-        switch (mode.getValue()) {
-            case 0x21:{
-                uploadedFile = null;
-                break;
-            }
-            case 0x22: {
-                uploadedFile = null;
-                break;
-            }
-            case 0x23: {
-                selectedFile = null;
-                break;
-            }
-            case 0x24: {
-                uploadedFile = selectedFile;
-                break;
-            }
-            case 0x25: {
+        switch (mode) {
+            case Mode.fileNOFILE:selectedFile = null; uploadedFile = null; break;
+            case Mode.fileHAVESEL: uploadedFile = null; break;
+            case Mode.fileHAVEUP: selectedFile = null; break;
+            case Mode.fileHAVEUPSEL: uploadedFile = selectedFile; break;
+            case Mode.fileLIST: {
+                if(selectedFile == null) {
+                    if(uploadedFile == null) {
+                        indexMode = Mode.fileNOFILE;
+                    } else {
+                        indexMode = Mode.fileHAVEUP;
+                    }
+                } else {
+                    if(uploadedFile == null) {
+                        indexMode = Mode.fileHAVESEL;
+                    } else {
+                        indexMode = Mode.fileHAVEUPSEL;
+                    }
+                }
                 fileRunner.runFileSearcher();
                 childFiles = fileRunner.getListofFile();
-            }break;
-            case 0x26: {
-                if(IDE.comInterpreter.getOptionLine() == null){
+                break;
+            }
+            case Mode.fileSEL: {
+                if(IDE.comInterpreter.getOption() == null){
                     break;
                 }
-                if(IDE.comInterpreter.getOptionLine().equals("..")) {
+                if(IDE.comInterpreter.getOption().equals("..")) {
                     fileRunner.goParentFolderOfList();
-                    childFiles=fileRunner.getListofFile();
+                    childFiles = fileRunner.getListofFile();
                     setMode(Mode.fileLIST);
                 } else {
-                    File file = new File(fileRunner.startPoint+ "\\" + IDE.comInterpreter.getOptionLine());
+                    String option = IDE.comInterpreter.getOption();
+                    File file = new File(fileRunner.startPoint+ "\\" + option);
                     if(file.exists()) {
                         if(file.isFile()) {
-                            selectedFile = fileRunner.selectFileOfList(IDE.comInterpreter.getOptionLine());
+                            selectedFile = fileRunner.selectFileOfList(option);
                             if(uploadedFile == null) {
                                 setMode(Mode.fileHAVESEL);
                             } else {
                                 setMode(Mode.fileHAVEUPSEL);
                             }
                         } else {
-                            fileRunner.goChildFolderOfList(IDE.comInterpreter.getOptionLine());
-                            childFiles=fileRunner.getListofFile();
+                            fileRunner.goChildFolderOfList(option);
+                            childFiles = fileRunner.getListofFile();
                             setMode(Mode.fileLIST);
                         }
                     }
-                }
-            }break;
+                } break;
+            }
+            case Mode.fileDELETE: {
+                fileRunner.deleteFile(selectedFile);
+                selectedFile = null;
+                if(uploadedFile != null) {
+                    setMode(Mode.fileHAVEUP);
+                } else {
+                    setMode(Mode.fileNOFILE);
+                } break;
+            }
         }
     }
 
     @Override
     public void showComponent() {
-        switch (mode.getValue()) {
-            case 0x21: {
+        switch (mode) {
+            case Mode.fileNOFILE: {
                 fileViewer.showFileEmpty(fileRunner.startPoint); break;
             }
-            case 0x22: {
+            case Mode.fileHAVESEL: {
                 fileViewer.showFileSelected(fileRunner.startPoint, selectedFile); break;
             }
-            case 0x23: {
+            case Mode.fileHAVEUP: {
                 fileViewer.showFileUP(fileRunner.startPoint, uploadedFile); break;
             }
-            case 0x24: {
+            case Mode.fileHAVEUPSEL: {
                 fileViewer.showFileUPSelected(fileRunner.startPoint, selectedFile, uploadedFile); break;
             }
-            case 0x25: {
+            case Mode.fileLIST: {
                 fileViewer.showListFiles(fileRunner.startPoint, childFiles); break;
             }
-            case 0x2D: {
+            case Mode.fileERROR: {
                 fileViewer.showHavingErrorFile(); break;
             }
-            case 0x2E: {
+            case Mode.fileHELP: {
                 fileViewer.showManual(); break;
             }
-            case 0x2F: {
+            case Mode.fileVER: {
                 fileViewer.showVersion(); break;
+            }
+        }
+    }
+
+    @Override
+    public void setMode(Mode m) {//파일 리스트 선택에서 뒤로 갈 때 파일 상태로 다시 돌아가야 함
+        int modeValue = m.getValue();
+            if(0x20 < modeValue && modeValue <= 0x24) {
+                indexMode = m;
+            } else if(0x24 < modeValue && modeValue <= 0x28) {
+                runableMode = m;
+            } else if(0x2C < modeValue && modeValue <= 0x2F) {
+                viewingMode = m;
+            }
+
+        mode = m;
+    }
+
+    @Override
+    public void interpretCommand(String command, String Option) {
+        if(mode.equals(Mode.fileNOFILE)){
+            switch (command) {
+                case "1", "list": setMode(Mode.fileLIST); break;
+                case "2", "exit": IDE.compoCaller.returnComponent(Mode.indNOFILE); break;
+                case "help": setMode(Mode.fileHELP); break;
+                case "version": setMode(Mode.fileVER); break;
+                case "set": IDE.compoCaller.callComponent(new ManagerCompo(Mode.managerHAVE)); break;
+            }
+        } else if (mode.equals(Mode.fileLIST)) {
+            switch (command) {
+                case "1", "back": setMode(indexMode); break;
+                case "select": setMode(Mode.fileSEL); break;
+                case "exit": IDE.compoCaller.returnComponent(); break;
+            }
+        } else if(mode.equals(Mode.fileHAVESEL)) {
+            switch (command) {
+                case "1", "list": setMode(Mode.fileLIST); break;
+                case "2", "upload": setMode(Mode.fileHAVEUPSEL); break;
+                case "3", "delete": setMode(Mode.fileDELETE); break;
+                case "4": IDE.compoCaller.callComponent(new TextEditorCompo(selectedFile, Mode.textREAD)); break;
+                case "5": /*setMode(Mode.fileMAKE);*/ break;
+                case "6", "exit": IDE.compoCaller.returnComponent(); break;
+                case "help": setMode(Mode.fileHELP); break;
+                case "version": setMode(Mode.fileVER); break;
+                case "set": IDE.compoCaller.callComponent(new ManagerCompo(Mode.managerHAVE)); break;
+            }
+        } else if (mode.equals(Mode.fileHAVEUPSEL)) {
+            switch (command) {
+                case "1", "list": setMode(Mode.fileLIST); break;
+                case "2", "upload": setMode(Mode.fileHAVESEL); break;
+                case "3", "delete": setMode(Mode.fileDELETE); break;
+                case "4": IDE.compoCaller.callComponent(new TextEditorCompo(FileCompo.getUploadedFile(), Mode.textREAD)); break;
+                case "5": /*setMode(Mode.fileMAKE);*/ break;
+                case "6", "exit": IDE.compoCaller.returnComponent(Mode.indHAVEFILE); break;
+                case "help": setMode(Mode.fileHELP); break;
+                case "version": setMode(Mode.fileVER); break;
+                case "set": IDE.compoCaller.callComponent(new ManagerCompo(Mode.managerHAVE)); break;
+            }
+        } else if (mode.equals(Mode.fileHAVEUP)) {
+            switch (command) {
+                case "1", "list": setMode(Mode.fileLIST); break;
+                case "2", "upload": setMode(Mode.fileNOFILE); break;
+                case "3": /*setMode(Mode.fileMAKE);*/ break;
+                case "4", "exit": IDE.compoCaller.returnComponent(Mode.indHAVEFILE); break;
+                case "set": IDE.compoCaller.callComponent(new ManagerCompo(Mode.managerHAVE)); break;
+            }
+        } else if(mode.equals(Mode.fileHELP) || mode.equals(Mode.fileVER) || mode.equals(Mode.fileERROR)) {
+            switch (command) {
+                case "back": setMode(indexMode); break;
+                case "exit": IDE.compoCaller.returnComponent(); break;
+                case "help": setMode(Mode.fileHELP); break;
+                case "version": setMode(Mode.fileVER); break;
             }
         }
     }
@@ -118,56 +187,14 @@ public class FileCompo extends IDEComponent {
         return uploadedFile;
     }
 
-    public File getSelectedFile() {
+    public static File getSelectedFile() {
         return selectedFile;
     }
 
-    /**
-     * if mode is file not have or have selected, uploaded, or both then it can change runnable mode to m.
-     * if mode is not runnable, then change viewing mode to m.
-     * @param m is Mode to change
-     */
-    @Override
-    public void setMode(Mode m) {//파일 리스트 선택에서 뒤로 갈 때 파일 상태로 다시 돌아가야 함
-        int modeValue = m.getValue();
-        switch(modeValue) {
-            case 0x21, 0x22, 0x23, 0x24, 0x25, 0x26: {
-                if(modeValue <= 0x24) {
-                    filemode = runableMode;
-                }
-                runableMode = m;
-                mode = runableMode;
-                break;
-            }
-            case 0x2D, 0x2E, 0x2F: {
-                viewingMode = m;
-                mode = viewingMode;
-                break;
-            }
-        }
-    }
-
-    /**
-     *
-     */
-    @Override
-    public void changeMode() {//파일 리스트에서 파일 인덱스 0x21-0x24로 돌아갈 수 있고 상태를 유지해야한다.
-        //파일을 선택한 상태에서 뒤로가기시 오류
-        if(mode == viewingMode) {
-            runableMode = filemode;
-            mode = runableMode;
-        } else if (mode == runableMode) {
-            runableMode = filemode;
-            mode = runableMode;
-        }
-    }
-
-    public File[] childFiles = null;
+    private File[] childFiles = null;
     private static File uploadedFile = null;
-    public File selectedFile = null;
+    private static File selectedFile = null;
 
-    private Mode filemode = null;
-
-    public FileRunner fileRunner = new FileRunner();
-    public FileViewer fileViewer = new FileViewer();
+    public final FileRunner fileRunner = new FileRunner();
+    public final FileViewer fileViewer = new FileViewer();
 }

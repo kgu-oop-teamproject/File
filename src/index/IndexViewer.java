@@ -3,14 +3,11 @@ package index;
 import java.io.File;
 
 public class IndexViewer {
-    public IndexViewer() {
-
-    }
 
     public void showStartProgram() {
         System.out.println("##############################");
         System.out.println("1. Search File");
-        System.out.println("2. View Log File");
+        System.out.println("2. View Error File");
         System.out.println("3. Edit Text File");
         System.out.println("4. IDE Settings");
         System.out.println("5. Exit");

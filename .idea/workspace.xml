@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="19cfe19e-36da-4189-9e2b-7fc33296b06c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/File.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/guiModel/Compiler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/guiModel/Error.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/guiModel/Run.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/GUI/GUImain.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/GUIInterface/DialogInterface.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/GUIInterface/MainInterface$MainPresenterInterface.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/GUIInterface/MainInterface$MainViewInterface.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/GUIInterface/MainInterface.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/GUIInterface/SideInterface$SidePresenterInterface.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/GUIInterface/SideInterface$SideViewInterface.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/GUIInterface/SideInterface.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/compiler/CompilerCompo$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/compiler/CompilerCompo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/compiler/CompilerRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/compiler/CompilerViewer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/file/FileCompo$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/file/FileCompo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/file/FileRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/file/FileViewer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/guiModel/File$FileTree.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/guiModel/File.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/guiModel/Installer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/guiModel/Settings$Project.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/guiModel/Settings.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/guiModel/TextList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/guiPresenter/DialogPresenter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/guiPresenter/MainPresenter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/guiPresenter/SidePresenter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/ide/CommandInterpreter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/ide/ComponentCaller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/ide/IDE.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/ide/IDEComponent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/ide/Mode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/index/IndexCompo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/index/IndexRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/index/IndexViewer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/manager/Keys.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/manager/ManagerCompo$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/manager/ManagerCompo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/manager/ManagerRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/manager/ManagerViewer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/runner/RunnerCompo$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/runner/RunnerCompo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/runner/RunnerRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/runner/RunnerViewer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/texteditor/TextEditorCompo$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/texteditor/TextEditorCompo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/texteditor/TextEditorRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File2/texteditor/TextEditorViewer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/guiModel/Installer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/guiModel/Installer.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2oqPTzm3BOT7tBqECTMbFGoOr02" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.MainFrame.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;presenter/201812478&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/AA AA/Desktop/JVTP2/File&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="19cfe19e-36da-4189-9e2b-7fc33296b06c" name="Changes" comment="" />
+      <created>1731594144653</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1731594144653</updated>
+    </task>
+    <servers />
+  </component>
+</project>

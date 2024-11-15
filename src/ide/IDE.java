@@ -12,24 +12,25 @@ import manager.ManagerCompo;
  * 2. call Index to use each IDE's function.
  * 3. if there are no exist Component, then exit IDE.
  */
-
 public class IDE {
-
+    /*
     public static void main(String[] args) {
-        //these lines run flow 1 to flow 2
-        compoCaller.callComponent(new ManagerCompo()); //have to put arg that run Installer
-        compoCaller.runComponent();
+        //these statements run flow 1 to flow 2
+        compoCaller.callComponent(new ManagerCompo(Mode.managerCHECK));
+        compoCaller.runComponent(); //check "settings.properties"
+        compoCaller.runComponent(); //install or get setting file.
         compoCaller.returnComponent();
+        //end checking.
 
-        //these lines are flow 2 to flow 3
+        //these statements run flow 2 to flow 3
         compoCaller.callComponent(new IndexCompo(Mode.indNOFILE));
         do {
-            compoCaller.runComponent(); //show and run
+            compoCaller.runComponent(); //execute first and show result after.
             comInterpreter.getCommandLine();
             comInterpreter.interpretCommand(compoCaller.getRunningComponent());
         } while(compoCaller.getRunningComponent() != null);
     }
-
+    */
     public static final ComponentCaller compoCaller = new ComponentCaller();
     public static final CommandInterpreter comInterpreter = new CommandInterpreter();
 }
